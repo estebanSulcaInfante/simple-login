@@ -1,0 +1,247 @@
+@model LoginFrontend.Models.Usuario
+@{
+    ViewData["Title"] = "Gestión de usuarios";
+    Layout = "_LayoutDashboard";
+}
+
+<div class="profile-content">
+    <!-- Breadcrumb -->
+    <div class="page-breadcrumb">
+        <span class="breadcrumb-label">Perfil de usuario</span>
+        <h1 class="page-title">Perfil de usuario</h1>
+    </div>
+
+    <!-- User Header -->
+    <div class="user-header">
+        <div class="user-avatar">
+            <img src="@Model.FotoUrl" alt="Avatar" class="avatar-img" />
+        </div>
+        <div class="user-info">
+            <div class="user-name-row">
+                <h2 class="user-fullname">@Model.PrimerApellido @Model.SegundoApellido, @Model.Nombres</h2>
+                @if (Model.Activo)
+                {
+                    <span class="badge-active">Activo</span>
+                }
+                else
+                {
+                    <span class="badge-inactive">Inactivo</span>
+                }
+            </div>
+            <p class="user-role">@Model.Cargo</p>
+            <p class="user-entity">@Model.Entidad</p>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="profile-tabs">
+        <button class="profile-tab active">Información básica</button>
+        <button class="profile-tab">Responsabilidades</button>
+        <button class="profile-tab">Historial de responsabilidades</button>
+    </div>
+
+    <!-- Info Grid -->
+    <div class="info-grid">
+        <div class="info-row">
+            <div class="info-field">
+                <label>Nombres</label>
+                <div class="info-value">@Model.Nombres</div>
+            </div>
+            <div class="info-field">
+                <label>Primer Apellido</label>
+                <div class="info-value">@Model.PrimerApellido</div>
+            </div>
+            <div class="info-field">
+                <label>Segundo Apellido</label>
+                <div class="info-value">@Model.SegundoApellido</div>
+            </div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-field">
+                <label>Tipo de Documento de Identidad</label>
+                <div class="info-value">@Model.TipoDocumento</div>
+            </div>
+            <div class="info-field">
+                <label>N° de Documento de Identidad</label>
+                <div class="info-value">@Model.NumeroDocumento</div>
+            </div>
+            <div class="info-field">
+                <label>Fecha de nacimiento</label>
+                <div class="info-value">@Model.FechaNacimiento</div>
+            </div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-field">
+                <label>Nacionalidad</label>
+                <div class="info-value">@Model.Nacionalidad</div>
+            </div>
+            <div class="info-field">
+                <label>Sexo</label>
+                <div class="info-value">@Model.Sexo</div>
+            </div>
+            <div class="info-field">
+                <label>Correo electrónico principal</label>
+                <div class="info-value editable">
+                    @Model.Email
+                    <button class="btn-edit" title="Editar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B6CB4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-field">
+                <label>Correo electrónico secundario <span class="optional">(Opcional)</span></label>
+                <div class="info-value">@(Model.EmailSecundario ?? "")</div>
+            </div>
+            <div class="info-field">
+                <label>Teléfono Móvil</label>
+                <div class="info-value editable">
+                    @Model.TelefonoMovil
+                    <button class="btn-edit" title="Editar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#3B6CB4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="info-field">
+                <label>Teléfono secundario <span class="optional">(Opcional)</span></label>
+                <div class="info-value phone-secondary">
+                    <select class="form-select form-select-sm phone-type-select">
+                        <option>Tipo</option>
+                        <option>Fijo</option>
+                        <option>Móvil</option>
+                    </select>
+                    <input type="text" class="form-control form-control-sm" placeholder="" value="@Model.TelefonoSecundario" />
+                </div>
+            </div>
+        </div>
+
+        <div class="info-row">
+            <div class="info-field">
+                <label>Tipo de Contratación</label>
+                <div class="info-value">@Model.TipoContratacion</div>
+            </div>
+            <div class="info-field">
+                <label>Fecha de contratación</label>
+                <div class="info-value">@Model.FechaContratacion</div>
+            </div>
+            <div class="info-field"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Session Expiry Modal -->
+<div class="modal fade" id="sessionModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content session-modal">
+            <div class="modal-body text-start p-4">
+                <div class="d-flex align-items-start gap-3">
+                    <div class="session-warning-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="#F59E0B" stroke="#F59E0B" stroke-width="0">
+                            <path d="M12 2L1 21h22L12 2zm0 4l7.53 13H4.47L12 6zm-1 5v4h2v-4h-2zm0 6v2h2v-2h-2z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h5 class="fw-bold mb-2">Su sesión esta a punto de expirar</h5>
+                        <p class="text-muted mb-0">
+                            Por seguridad, su sesión expirará en <strong id="countdown">60</strong> segundos. 
+                            Para continuar, seleccione "Extender sesión"
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer border-0 pt-0 px-4 pb-4">
+                <button type="button" class="btn btn-extend-session" id="btnExtendSession">
+                    Extender sesión
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    (function() {
+        // Session config: 1 minute total, warning at 30 seconds before
+        const SESSION_DURATION_MS = 1 * 60 * 1000;  // 1 minute
+        const WARNING_BEFORE_MS = 30 * 1000;        // 30 seconds before expiry
+        const COUNTDOWN_SECONDS = 30;
+
+        let sessionTimer;
+        let countdownTimer;
+        let countdownValue = COUNTDOWN_SECONDS;
+        let modal;
+
+        function initSession() {
+            modal = new bootstrap.Modal(document.getElementById('sessionModal'));
+            startSessionTimer();
+        }
+
+        function startSessionTimer() {
+            clearTimeout(sessionTimer);
+            clearInterval(countdownTimer);
+
+            // Show warning 1 minute before session expires
+            sessionTimer = setTimeout(function() {
+                showWarning();
+            }, SESSION_DURATION_MS - WARNING_BEFORE_MS);
+        }
+
+        function showWarning() {
+            countdownValue = COUNTDOWN_SECONDS;
+            document.getElementById('countdown').textContent = countdownValue;
+            modal.show();
+
+            countdownTimer = setInterval(function() {
+                countdownValue--;
+                document.getElementById('countdown').textContent = countdownValue;
+
+                if (countdownValue <= 0) {
+                    clearInterval(countdownTimer);
+                    modal.hide();
+                    // Redirect to login with expired message
+                    window.location.href = '@Url.Action("Login", "Account", new { expired = true })';
+                }
+            }, 1000);
+        }
+
+        // Extend session button
+        document.getElementById('btnExtendSession').addEventListener('click', function() {
+            clearInterval(countdownTimer);
+            
+            fetch('@Url.Action("ExtendSession", "Users")', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value || ''
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    modal.hide();
+                    startSessionTimer();
+                }
+            })
+            .catch(() => {
+                modal.hide();
+                startSessionTimer();
+            });
+        });
+
+        // Init when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initSession);
+        } else {
+            initSession();
+        }
+    })();
+</script>
+}
