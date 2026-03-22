@@ -6,9 +6,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services
 builder.Services.AddControllersWithViews();
 
-// SQLite Database
+// Database Configuration
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=LoginFrontend.db"));
+    options.UseSqlServer(connectionString));
 
 // Session (20 min timeout)
 builder.Services.AddDistributedMemoryCache();
