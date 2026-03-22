@@ -117,7 +117,17 @@
             <div class="row g-3 mb-4">
                 <div class="col-12 col-lg-6">
                     <label class="font-label fw-bold text-slate-500 small d-block mb-1">Correo electrónico principal</label>
-                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-2 px-3 rounded-3 border border-outline-variant text-truncate">@Model.Email</div>
+                    <div class="d-flex align-items-center justify-content-between fw-medium text-slate-900 fs-6 bg-surface-container-low py-2 px-3 rounded-3 border border-outline-variant">
+                        <span id="emailDisplay" class="text-truncate">@Model.Email</span>
+                        <input type="email" id="emailInput" class="form-control form-control-sm d-none me-2 shadow-none border-1 border-primary-custom" value="@Model.Email" />
+                        <div class="d-flex flex-shrink-0 align-items-center gap-1">
+                            <a href="javascript:void(0)" class="text-primary-custom text-decoration-none d-flex align-items-center hover-scale-101 transition-all" id="btnEditEmail" onclick="toggleEmailEdit()" title="Editar correo">
+                                <span class="material-symbols-outlined fs-5">edit</span>
+                            </a>
+                            <button type="button" class="btn btn-sm text-white py-0 px-2 d-none fw-bold" style="background-color: var(--bs-primary);" id="btnSaveEmail" onclick="saveEmail()">Guardar</button>
+                            <button type="button" class="btn btn-sm btn-light py-0 px-2 d-none fw-bold" id="btnCancelEmail" onclick="toggleEmailEdit()">X</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-12 col-lg-6">
                     <label class="font-label fw-bold text-slate-500 small d-block mb-1">Correo electrónico secundario</label>
@@ -304,5 +314,51 @@
 
         // Start cycle initially
         startSessionTimer();
+
+        // Email Edit Feature
+        function toggleEmailEdit() {
+            const isEditing = document.getElementById('emailInput').classList.contains('d-none');
+            if (isEditing) {
+                document.getElementById('emailDisplay').classList.add('d-none');
+                document.getElementById('emailInput').classList.remove('d-none');
+                document.getElementById('btnEditEmail').classList.add('d-none');
+                document.getElementById('btnSaveEmail').classList.remove('d-none');
+                document.getElementById('btnCancelEmail').classList.remove('d-none');
+            } else {
+                document.getElementById('emailDisplay').classList.remove('d-none');
+                document.getElementById('emailInput').classList.add('d-none');
+                document.getElementById('btnEditEmail').classList.remove('d-none');
+                document.getElementById('btnSaveEmail').classList.add('d-none');
+                document.getElementById('btnCancelEmail').classList.add('d-none');
+                document.getElementById('emailInput').value = document.getElementById('emailDisplay').innerText;
+            }
+        }
+
+        async function saveEmail() {
+            const newEmail = document.getElementById('emailInput').value;
+            const btn = document.getElementById('btnSaveEmail');
+            btn.innerText = '...';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('@Url.Action("UpdateEmail", "Users")', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: newEmail })
+                });
+                const data = await response.json();
+                
+                if (data.success) {
+                    document.getElementById('emailDisplay').innerText = newEmail;
+                    toggleEmailEdit();
+                } else {
+                    alert('Error guardando el correo');
+                }
+            } catch(e) { console.error(e); }
+            finally {
+                btn.innerText = 'Guardar';
+                btn.disabled = false;
+            }
+        }
     </script>
 }

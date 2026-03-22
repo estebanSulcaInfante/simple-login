@@ -1,10 +1,13 @@
+using System;
 using LoginFrontend.Data;
+using LoginFrontend.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IEmailService, SmtpEmailService>();
 
 // Database Configuration
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 

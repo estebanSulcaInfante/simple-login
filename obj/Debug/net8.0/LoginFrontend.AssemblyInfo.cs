@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("ed705291-f460-4c93-9afb-b9c9e2c0efce")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("LoginFrontend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e90bc50c3c1c0a625b848032a785bc5da12a14d7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5cb1eb1b8f9409b02679f102cea3677f02c2ebc")]
 [assembly: System.Reflection.AssemblyProductAttribute("LoginFrontend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LoginFrontend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

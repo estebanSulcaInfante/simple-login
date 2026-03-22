@@ -1,16 +1,19 @@
 using Microsoft.AspNetCore.Mvc;
 using LoginFrontend.Data;
 using LoginFrontend.Models;
+using LoginFrontend.Services;
 
 namespace LoginFrontend.Controllers;
 
 public class AccountController : Controller
 {
     private readonly AppDbContext _context;
+    private readonly IEmailService _emailService;
 
-    public AccountController(AppDbContext context)
+    public AccountController(AppDbContext context, IEmailService emailService)
     {
         _context = context;
+        _emailService = emailService;
     }
 
     // GET: /Account/Activated
@@ -41,7 +44,7 @@ public class AccountController : Controller
 
     // POST: /Account/Login
     [HttpPost]
-    public IActionResult Login(string tipoDocumento, string numeroDocumento, string password)
+    public async Task<IActionResult> Login(string tipoDocumento, string numeroDocumento, string password)
     {
         if (string.IsNullOrWhiteSpace(numeroDocumento) || string.IsNullOrWhiteSpace(password))
         {
@@ -89,6 +92,20 @@ public class AccountController : Controller
                 // Block account for 15 minutes
                 var unblockTime = DateTime.Now.AddMinutes(15);
                 usuario.BloqueadoHasta = unblockTime;
+                
+                if (!string.IsNullOrEmpty(usuario.Email))
+                {
+                    try
+                    {
+                        await _emailService.SendAccountBlockedEmailAsync(usuario.Email, usuario.Nombres, unblockTime);
+                    }
+                    catch (Exception ex)
+                    {
+                        // Resend API will throw if the sandbox limit restricts sending to unverified emails.
+                        Console.WriteLine($"Warning: Failed to send block notification: {ex.Message}");
+                    }
+                }
+
                 _context.SaveChanges();
                 TempData["UnblockTime"] = new DateTimeOffset(unblockTime).ToUnixTimeMilliseconds().ToString();
                 return RedirectToAction("Blocked");

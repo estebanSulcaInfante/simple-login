@@ -44,4 +44,26 @@ public class UsersController : Controller
         HttpContext.Session.SetString("LoginTime", DateTime.Now.ToString("o"));
         return Json(new { success = true });
     }
+
+    // POST: /Users/UpdateEmail (AJAX)
+    [HttpPost]
+    public async Task<IActionResult> UpdateEmail([FromBody] UpdateEmailModel model)
+    {
+        var userId = HttpContext.Session.GetInt32("UsuarioId");
+        if (userId == null) return Json(new { success = false });
+
+        var usuario = await _context.Usuarios.FindAsync(userId);
+        if (usuario != null && !string.IsNullOrWhiteSpace(model.Email))
+        {
+            usuario.Email = model.Email;
+            await _context.SaveChangesAsync();
+            return Json(new { success = true });
+        }
+        return Json(new { success = false });
+    }
+}
+
+public class UpdateEmailModel
+{
+    public string Email { get; set; }
 }
