@@ -28,6 +28,14 @@ public class AccountController : Controller
         {
             ViewBag.SessionExpired = true;
         }
+
+        if (TempData["Error"] != null)
+        {
+            ViewBag.Error = TempData["Error"]!.ToString();
+            ViewBag.TipoDocumento = TempData["TipoDocumento"]?.ToString();
+            ViewBag.NumeroDocumento = TempData["NumeroDocumento"]?.ToString();
+        }
+
         return View();
     }
 
@@ -37,9 +45,9 @@ public class AccountController : Controller
     {
         if (string.IsNullOrWhiteSpace(numeroDocumento) || string.IsNullOrWhiteSpace(password))
         {
-            ViewBag.Error = "Por favor, complete todos los campos.";
-            ViewBag.TipoDocumento = tipoDocumento;
-            return View();
+            TempData["Error"] = "Por favor, complete todos los campos.";
+            TempData["TipoDocumento"] = tipoDocumento;
+            return RedirectToAction("Login");
         }
 
         var usuario = _context.Usuarios
@@ -48,15 +56,16 @@ public class AccountController : Controller
         // User does not exist
         if (usuario == null)
         {
-            ViewBag.Error = "El usuario ingresado no existe.";
-            ViewBag.TipoDocumento = tipoDocumento;
-            ViewBag.NumeroDocumento = numeroDocumento;
-            return View();
+            TempData["Error"] = "El usuario ingresado no existe.";
+            TempData["TipoDocumento"] = tipoDocumento;
+            TempData["NumeroDocumento"] = numeroDocumento;
+            return RedirectToAction("Login");
         }
 
         // Check if account is blocked
         if (usuario.BloqueadoHasta.HasValue && usuario.BloqueadoHasta.Value > DateTime.Now)
         {
+            TempData["UnblockTime"] = new DateTimeOffset(usuario.BloqueadoHasta.Value).ToUnixTimeMilliseconds().ToString();
             return RedirectToAction("Blocked");
         }
 
@@ -78,18 +87,20 @@ public class AccountController : Controller
             if (usuario.IntentosLoginFallidos >= 5)
             {
                 // Block account for 15 minutes
-                usuario.BloqueadoHasta = DateTime.Now.AddMinutes(15);
+                var unblockTime = DateTime.Now.AddMinutes(15);
+                usuario.BloqueadoHasta = unblockTime;
                 _context.SaveChanges();
+                TempData["UnblockTime"] = new DateTimeOffset(unblockTime).ToUnixTimeMilliseconds().ToString();
                 return RedirectToAction("Blocked");
             }
 
             _context.SaveChanges();
 
             int intentosRestantes = 5 - usuario.IntentosLoginFallidos;
-            ViewBag.Error = $"Contraseña incorrecta. Le quedan {intentosRestantes} intento(s).";
-            ViewBag.TipoDocumento = tipoDocumento;
-            ViewBag.NumeroDocumento = numeroDocumento;
-            return View();
+            TempData["Error"] = $"Contraseña incorrecta. Le quedan {intentosRestantes} intento(s).";
+            TempData["TipoDocumento"] = tipoDocumento;
+            TempData["NumeroDocumento"] = numeroDocumento;
+            return RedirectToAction("Login");
         }
 
         // Successful login - reset failed attempts
@@ -109,6 +120,11 @@ public class AccountController : Controller
     // GET: /Account/Blocked
     public IActionResult Blocked()
     {
+        if (TempData["UnblockTime"] != null)
+        {
+            ViewBag.UnblockTime = TempData["UnblockTime"]!.ToString();
+            TempData.Keep("UnblockTime");
+        }
         return View();
     }
 

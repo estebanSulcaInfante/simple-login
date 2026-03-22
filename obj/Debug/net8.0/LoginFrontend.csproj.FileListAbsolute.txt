@@ -132,3 +132,4 @@ D:\Users\esteb\login-frontend\obj\Debug\net8.0\refint\LoginFrontend.dll
 D:\Users\esteb\login-frontend\obj\Debug\net8.0\LoginFrontend.pdb
 D:\Users\esteb\login-frontend\obj\Debug\net8.0\LoginFrontend.genruntimeconfig.cache
 D:\Users\esteb\login-frontend\obj\Debug\net8.0\ref\LoginFrontend.dll
+D:\Users\esteb\login-frontend\obj\Debug\net8.0\LoginFrontend.sourcelink.json

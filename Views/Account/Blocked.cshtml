@@ -1,27 +1,95 @@
+@model LoginFrontend.Models.Usuario
+
 @{
-    ViewData["Title"] = "Cuenta bloqueada";
+    ViewData["Title"] = "Cuenta Bloqueada";
     Layout = "_LayoutSimple";
 }
 
-<div class="blocked-card">
-    <div class="blocked-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="#3B6CB4" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"/>
-        </svg>
-        <!-- headset overlay small icon -->
-        <div class="headset-overlay">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B6CB4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 18v-6a9 9 0 0 1 18 0v6"/>
-                <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>
-            </svg>
+<div class="w-100" style="max-width: 56rem;">
+    <div class="row align-items-center g-5">
+        <!-- Asymmetric Illustration Section -->
+        <div class="col-md-5 d-none d-md-block">
+            <div class="position-relative rounded-4 overflow-hidden bg-primary-custom d-flex align-items-center justify-content-center p-5" style="aspect-ratio: 1/1;">
+                <div class="position-absolute w-100 h-100 opacity-20" style="background-image: radial-gradient(circle at 2px 2px, #ffffff 1px, transparent 0); background-size: 24px 24px;"></div>
+                <div class="position-relative z-10 d-flex flex-column align-items-center">
+                    <span class="material-symbols-outlined text-white opacity-40 mb-3" style="font-size: 5rem;">lock_person</span>
+                    <div class="rounded-pill bg-white opacity-60" style="height: 4px; width: 4rem;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Content Section -->
+        <div class="col-12 col-md-7 d-flex flex-column gap-4">
+            <div class="d-flex flex-column gap-3">
+                <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill bg-error-container text-on-error-container fw-semibold text-uppercase tracking-wider align-self-start" style="font-size: 0.75rem;">
+                    <span class="material-symbols-outlined icon-fill-1" style="font-size: 0.875rem;">security</span>
+                    Protocolo de Seguridad
+                </div>
+                <h1 class="font-headline fw-bolder text-primary-custom tracking-tight lh-sm" style="font-size: 2.75rem;">
+                    Cuenta temporalmente <br/><span class="text-error">restringida</span>
+                </h1>
+                <p class="text-on-surface-variant fs-5 lh-base m-0" style="max-width: 32rem;">
+                    Por su seguridad, hemos bloqueado el acceso a esta cuenta tras múltiples intentos fallidos (5/5). Esta es una medida institucional estándar para prevenir el acceso no autorizado.
+                </p>
+            </div>
+            
+            <div class="bg-surface-container-low p-4 rounded-4 shadow-sm border-start border-4 border-error d-flex flex-column gap-3 mt-2">
+                <h3 class="font-headline fw-bold text-primary-custom fs-5 m-0">¿Qué sucede ahora?</h3>
+                <p class="text-on-surface-variant small m-0">
+                    Nuestro equipo de seguridad está monitoreando la situación. La restricción se levantará automáticamente en <strong id="countdown-timer">15:00</strong>. Se ha registrado un reporte de incidente.
+                </p>
+                <div class="d-flex flex-wrap gap-3 mt-2">
+                    <a href="#" class="btn btn-outline-secondary px-4 py-2 border border-outline-variant fw-semibold rounded-3 hover-bg-slate-50 transition-all text-secondary-custom bg-white">
+                        Mesa de Ayuda
+                    </a>
+                    <a href="@Url.Action("Login", "Account")" class="btn btn-light px-4 py-2 fw-semibold rounded-3 text-secondary-custom transition-all">
+                        Volver al Ingreso
+                    </a>
+                </div>
+            </div>
+            
+            <div class="d-flex align-items-center gap-3 mt-3 fw-medium text-uppercase tracking-widest text-on-surface-variant opacity-60" style="font-size: 0.65rem;">
+                <span>ID de Referencia: IV-7702-XQ</span>
+                <span class="rounded-circle bg-outline-variant" style="width: 4px; height: 4px;"></span>
+                <span>Último Intento: Hace un momento</span>
+            </div>
         </div>
     </div>
-
-    <h2 class="blocked-title">Cuenta bloqueada temporalmente</h2>
-    
-    <p class="blocked-text">
-        Has excedido el número máximo de intentos fallidos (5). 
-        Por seguridad, tu cuenta ha sido bloqueada durante 15 minutos. 
-        Intenta nuevamente más tarde.
-    </p>
 </div>
+
+@if (ViewBag.UnblockTime != null)
+{
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let timeStr = '@Html.Raw(ViewBag.UnblockTime)';
+            let targetTime = parseInt(timeStr, 10);
+            const timerElement = document.getElementById('countdown-timer');
+
+            function updateTimer() {
+                if (isNaN(targetTime) || !timeStr) {
+                    // Fallback visual in case of direct refresh or missing data
+                    timerElement.innerHTML = "15:00"; 
+                    return;
+                }
+                
+                const now = new Date().getTime();
+                const distance = targetTime - now;
+
+                if (distance <= 0) {
+                    timerElement.innerHTML = "Desbloqueado (Actualice la página)";
+                    return;
+                }
+
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                timerElement.innerHTML = minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+            }
+
+            updateTimer();
+            if (!isNaN(targetTime) && timeStr) {
+                setInterval(updateTimer, 1000);
+            }
+        });
+    </script>
+}

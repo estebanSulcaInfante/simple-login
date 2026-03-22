@@ -1,29 +1,69 @@
+@model string
+
 @{
-    ViewData["Title"] = "Activación de cuenta";
+    ViewData["Title"] = "Cuenta Activada";
     Layout = "_LayoutSimple";
 }
 
-<div class="activation-card">
-    <div class="activation-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-            <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
-            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
-            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
-        </svg>
-        <div class="activation-check">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-            </svg>
+<div class="w-100 text-center py-5 d-flex flex-column align-items-center">
+    
+    <!-- Editorial Element -->
+    <div class="mb-5 d-inline-flex align-items-center justify-content-center">
+        <div class="position-relative">
+            <div class="rounded-circle bg-secondary-container d-flex align-items-center justify-content-center position-relative z-10" style="width: 6rem; height: 6rem;">
+                <span class="material-symbols-outlined text-on-secondary-container fs-1 icon-fill-1" data-icon="verified_user">verified_user</span>
+            </div>
+            <!-- Decorative blur element -->
+            <div class="position-absolute rounded-circle border border-white-10" style="width: 3rem; height: 3rem; top: -1rem; right: -1rem; background-color: rgba(233, 193, 118, 0.2); backdrop-filter: blur(4px);"></div>
         </div>
     </div>
+    
+    <h1 class="font-headline fw-bold text-slate-900 tracking-tighter mb-4" style="font-size: clamp(3rem, 6vw, 4.5rem);">
+        Cuenta Activada
+    </h1>
+    
+    <p class="text-secondary-custom lh-lg mb-5 mx-auto px-3" style="font-size: clamp(1.125rem, 2vw, 1.25rem); max-width: 36rem;">
+        Bienvenido/a <strong>@Model</strong>, sus credenciales institucionales han sido validadas correctamente. Ya tiene acceso completo a la consola de gestión de perfiles.
+    </p>
+    
+    <div class="d-flex flex-column flex-md-row align-items-center justify-content-center gap-3 gap-md-4 mb-5 pb-5">
+        <a href="@Url.Action("Login", "Account")" class="btn premium-gradient text-white font-headline fw-semibold px-5 py-3 rounded-3 shadow hover-scale-101 active-scale-95 transition-all d-inline-flex align-items-center justify-content-center gap-2">
+            Ir al inicio de sesión
+            <span class="material-symbols-outlined fs-6" data-icon="arrow_forward">arrow_forward</span>
+        </a>
+        <a href="#" class="btn btn-outline-secondary border-outline-variant text-secondary-custom font-headline fw-semibold px-5 py-3 rounded-3 hover-bg-surface-container-low transition-all border-opacity-25 bg-white">
+            Contactar Soporte
+        </a>
+    </div>
 
-    <h2 class="activation-title">¡Bienvenida, @ViewBag.Nombre!</h2>
-    
-    <p class="activation-text">Su cuenta en el aplicativo X está activada.</p>
-    <p class="activation-subtext">Ya puede iniciar sesión.</p>
-    
-    <a href="@Url.Action("Login", "Account")" class="btn btn-primary btn-activation">
-        Iniciar sesión
-    </a>
+    <!-- Info Cards Grid -->
+    <div class="row w-100 g-4 pb-5" style="max-width: 72rem; text-align: left;">
+        <div class="col-12 col-md-4">
+            <div class="bg-surface-container-lowest p-4 p-md-5 rounded-4 shadow-sm hover-shadow transition-all h-100 border border-light">
+                <div class="mb-3">
+                    <span class="material-symbols-outlined text-on-tertiary-container" style="color: #b6924c;" data-icon="security">security</span>
+                </div>
+                <h3 class="font-headline fw-bold text-primary-custom fs-5 mb-2">Acceso Seguro</h3>
+                <p class="text-on-surface-variant small lh-lg m-0">Su acceso incorpora múltiples filtros de seguridad y trazabilidad transaccional en tiempo real.</p>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="bg-surface-container-lowest p-4 p-md-5 rounded-4 shadow-sm hover-shadow transition-all h-100 border border-light">
+                <div class="mb-3">
+                    <span class="material-symbols-outlined text-on-tertiary-container" style="color: #b6924c;" data-icon="account_circle">account_circle</span>
+                </div>
+                <h3 class="font-headline fw-bold text-primary-custom fs-5 mb-2">Gobernanza de Identidad</h3>
+                <p class="text-on-surface-variant small lh-lg m-0">Gestión centralizada de perfiles y credenciales institucionales sincronizadas automáticamente.</p>
+            </div>
+        </div>
+        <div class="col-12 col-md-4">
+            <div class="bg-surface-container-lowest p-4 p-md-5 rounded-4 shadow-sm hover-shadow transition-all h-100 border border-light">
+                <div class="mb-3">
+                    <span class="material-symbols-outlined text-on-tertiary-container" style="color: #b6924c;" data-icon="support_agent">support_agent</span>
+                </div>
+                <h3 class="font-headline fw-bold text-primary-custom fs-5 mb-2">Soporte Prioritario</h3>
+                <p class="text-on-surface-variant small lh-lg m-0">El estado de su cuenta le otorga acceso directo a nuestra línea preferencial de asistencia técnica.</p>
+            </div>
+        </div>
+    </div>
 </div>

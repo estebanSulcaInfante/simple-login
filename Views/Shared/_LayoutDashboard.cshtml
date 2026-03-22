@@ -1,87 +1,115 @@
+@using System.Text.Json
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="light">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CEPLAN</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <title>@ViewData["Title"] | Institutional Vanguard</title>
+
+    <!-- Google Fonts: Manrope (Headlines) & Inter (Body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Inter:wght@100..900&display=swap" rel="stylesheet" />
+    <!-- Material Symbols Outlined -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
-<body class="layout-dashboard">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <button class="sidebar-toggle" id="sidebarToggle">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
-            </svg>
-        </button>
-        <nav class="sidebar-nav">
-            <a href="#" class="sidebar-link" title="Inicio">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-            </a>
-            <a href="#" class="sidebar-link" title="Estadísticas">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-            </a>
-            <a href="#" class="sidebar-link active" title="Usuarios">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            </a>
-            <a href="#" class="sidebar-link" title="Buscar">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            </a>
-        </nav>
-    </aside>
+<body class="bg-surface text-on-surface font-body min-vh-100 d-flex flex-column">
+    @{
+        var usuarioActivo = Context.Items["UsuarioActivo"] as LoginFrontend.Models.Usuario;
+    }
+    <!-- TopNavBar Shell -->
+    <header class="fixed-top w-100 d-flex justify-content-between align-items-center px-4 px-md-5 h-20 bg-white-80 backdrop-blur-xl shadow-sm z-50">
+        <div class="d-flex align-items-center gap-4">
+            <span class="font-headline fw-black text-slate-900 fs-5 tracking-tighter">Institutional Vanguard</span>
+        </div>
+        <div class="d-flex align-items-center gap-4">
+            @if(usuarioActivo != null)
+            {
+                <div class="d-none d-md-flex flex-column align-items-end">
+                    <span class="font-headline fw-bold fs-6 tracking-tight text-slate-900">@usuarioActivo.Nombres @usuarioActivo.PrimerApellido</span>
+                    <span class="font-label small text-on-surface-variant text-uppercase tracking-wider">@usuarioActivo.Cargo</span>
+                </div>
+                <div class="avatar-lg rounded-circle overflow-hidden bg-surface-container-highest me-2">
+                    <img class="w-100 h-100 object-fit-cover" src="@(string.IsNullOrEmpty(usuarioActivo.FotoUrl) ? "https://lh3.googleusercontent.com/aida-public/AB6AXuCFnukPQ2yDu9jkG9l8Cqx7KUQruAkumhLswT_cAELqweZW07Loy3yJeRZ0u92WlOpGvXUYXF1aVsgtTaECy6RTkOpNd0tQL9lAbkpS03BtwkYk6hKbShkFofPBWynSMJ7Wg7nF5xidv47wJs7VAR0UZCvxHFgr27E2w42nqoEtgLwBX12NySGu2O5FM3AzjDkvSqvFBYbpOJScAuv87jIs1JqdhekBfuSYFhpRelM_AQi68aYLvbNe_Nb4c2I9ZzLfZSH5YciG3cM" : usuarioActivo.FotoUrl)" alt="User Avatar" />
+                </div>
+            }
+            <form asp-controller="Account" asp-action="Logout" method="post" class="m-0 p-0">
+                <button type="submit" class="btn btn-icon group rounded-3 transition-colors hover-bg-slate-50 border-0 bg-transparent">
+                    <span class="material-symbols-outlined text-slate-500 group-hover-text-error transition-colors">logout</span>
+                </button>
+            </form>
+        </div>
+    </header>
 
-    <!-- Main area -->
-    <div class="dashboard-main">
-        <!-- Top header -->
-        <header class="dashboard-header">
-            <div class="header-left">
-                <img src="/img/ceplan-logo-white.svg" alt="CEPLAN" class="header-logo-dash" onerror="this.outerHTML='<span class=\'ceplan-text\'>CEPLAN</span>'" />
+    <div class="d-flex flex-grow-1">
+        <!-- SideNavBar Shell -->
+        <aside class="sidebar-width d-none d-lg-flex flex-column position-fixed start-0 top-0 h-100 z-40 bg-primary-custom py-5 shadow-lg">
+            <div class="px-4 mb-5">
+                <div class="font-headline fw-black text-white fs-5">Portal Institucional</div>
+                <div class="font-label small text-slate-400 text-uppercase tracking-widest mt-1 fw-bold" style="font-size: 0.65rem;">Consola de Gestión</div>
             </div>
-            <div class="header-right-dash">
-                <button class="btn-help-dash" title="Ayuda">?</button>
-                <div class="notification-icon" title="Notificaciones">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-                    <span class="notification-badge">9+</span>
-                </div>
-                <div class="user-menu">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><circle cx="19" cy="7" r="3" fill="#4CAF50" stroke="#4CAF50"/></svg>
-                </div>
-                <div class="header-user-info">
-                    <span class="header-user-name">@Context.Session.GetString("UsuarioNombre")</span>
-                    <span class="header-user-role">@Context.Session.GetString("UsuarioCargo")</span>
-                </div>
+            
+            <nav class="flex-grow-1">
+                <ul class="nav flex-column gap-1 w-100">
+                    <li class="nav-item px-3 w-100">
+                        <!-- Active State Applied to Profile -->
+                        <a href="#" class="nav-link bg-sidebar-active text-white rounded-3 py-3 d-flex align-items-center px-3 transition-colors">
+                            <span class="material-symbols-outlined me-3">person</span>
+                            <span class="font-label small fw-medium">Perfil de usuario</span>
+                        </a>
+                    </li>
+                    <li class="nav-item px-3 w-100">
+                        <a href="#" class="nav-link text-slate-400 hover-text-white hover-bg-white-10 rounded-3 py-3 d-flex align-items-center px-3 transition-colors">
+                            <span class="material-symbols-outlined me-3">group_add</span>
+                            <span class="font-label small fw-medium">Módulo PEI</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="mt-auto pt-4 border-top border-white-10">
+                <ul class="nav flex-column gap-1 w-100">
+                    <li class="nav-item px-3 w-100">
+                        <a href="#" class="nav-link text-slate-400 hover-text-white hover-bg-white-10 rounded-3 py-3 d-flex align-items-center px-3 transition-colors">
+                            <span class="material-symbols-outlined me-3">settings</span>
+                            <span class="font-label small fw-medium">Configuración</span>
+                        </a>
+                    </li>
+                    <li class="nav-item px-3 w-100">
+                        <a href="#" class="nav-link text-slate-400 hover-text-white hover-bg-white-10 rounded-3 py-3 d-flex align-items-center px-3 transition-colors">
+                            <span class="material-symbols-outlined me-3">help</span>
+                            <span class="font-label small fw-medium">Soporte</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
-        </header>
+        </aside>
 
-        <!-- Content -->
-        <main class="dashboard-content">
+        <!-- Main Content -->
+        <div class="content-margin-left pt-24 min-vh-100 w-100 d-flex flex-column">
             @RenderBody()
-        </main>
 
-        <!-- Footer -->
-        <footer class="gov-footer dashboard-footer">
-            <div class="footer-content">
-                <div class="footer-logos">
-                    <div class="footer-item">
-                        <span class="footer-shield">🇵🇪</span>
-                        <span class="footer-peru-text">PERÚ</span>
+            <!-- Footer Shell inside content to align with sidebar -->
+            <footer class="bg-slate-50 border-top border-slate-200 mt-auto py-4">
+                <div class="container-fluid px-4 px-md-5 d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-4">
+                    <div class="font-body small text-slate-600 m-0" style="font-size: 0.85rem;">
+                        Si necesitas ayuda comunicate con nosotros al Telf: (01) 2117-800 o a <a href="mailto:soporte@ceplan.gob.pe" class="text-secondary-custom text-decoration-none fw-bold hover-underline transition-all">soporte@ceplan.gob.pe</a>
                     </div>
-                    <div class="footer-separator"></div>
-                    <div class="footer-item">
-                        <span class="footer-org-text">Presidencia<br/>del Consejo de<br/>Ministros</span>
-                    </div>
-                    <div class="footer-separator"></div>
-                    <div class="footer-item">
-                        <span class="footer-org-text">Centro Nacional<br/>de Planeamiento<br/>Estratégico</span>
+                    <div class="d-flex flex-column align-items-md-end gap-1">
+                        <span class="font-headline fw-bold text-slate-900 m-0" style="font-size: 0.95rem;">Presidencia del Consejo de Ministros</span>
+                        <span class="font-label small text-slate-500 text-uppercase tracking-widest fw-bold" style="font-size: 0.65rem;">Centro Nacional de Planeamiento Estratégico</span>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
+        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
