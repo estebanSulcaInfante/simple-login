@@ -17,36 +17,36 @@
 </div>
 
 <!-- Profile Header -->
-<div class="bg-surface-container-lowest rounded-4 p-4 p-lg-5 shadow-sm ring-1 mb-4 position-relative overflow-hidden">
+<div class="bg-surface-container-lowest rounded-4 p-4 shadow-sm ring-1 mb-3 position-relative overflow-hidden">
     <!-- Decorative accent -->
     <div class="position-absolute top-0 start-0 h-100" style="width: 0.375rem; background-color: #8B1A1A;"></div>
     
-    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-start gap-4 ps-2">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-start gap-3 ps-2">
         <div>
-            <div class="d-flex flex-wrap align-items-center gap-3 mb-2">
-                <h1 class="font-headline fw-bolder text-primary-custom m-0" style="font-size: 2rem;">@Model.PrimerApellido @Model.SegundoApellido, @Model.Nombres</h1>
+            <div class="d-flex flex-wrap align-items-center gap-3 mb-1">
+                <h1 class="font-headline fw-bolder text-primary-custom m-0" style="font-size: 1.75rem;">@Model.PrimerApellido @Model.SegundoApellido, @Model.Nombres</h1>
                 @if(Model.Activo) {
-                    <span class="badge bg-success bg-opacity-10 text-success border border-success px-3 py-2 rounded-pill fw-bold tracking-widest text-uppercase" style="font-size: 0.7rem;">
+                    <span class="badge bg-success bg-opacity-10 text-success border border-success px-3 py-1 rounded-pill fw-bold tracking-widest text-uppercase" style="font-size: 0.7rem;">
                         Activo
                     </span>
                 } else {
-                    <span class="badge bg-danger bg-opacity-10 text-danger border border-danger px-3 py-2 rounded-pill fw-bold tracking-widest text-uppercase" style="font-size: 0.7rem;">
+                    <span class="badge bg-danger bg-opacity-10 text-danger border border-danger px-3 py-1 rounded-pill fw-bold tracking-widest text-uppercase" style="font-size: 0.7rem;">
                         Inactivo
                     </span>
                 }
             </div>
             
-            <p class="text-on-surface-variant fw-medium m-0 fs-6 mt-3">
+            <p class="text-on-surface-variant fw-medium m-0 mt-2">
                 Resultado de búsqueda: <span class="fw-bold text-slate-800">@Model.Cargo</span>
             </p>
-            <p class="text-on-surface-variant fw-medium m-0 fs-6 mt-1">
+            <p class="text-on-surface-variant fw-medium m-0 mt-1">
                 011 @Model.Entidad
             </p>
         </div>
         
         <div class="d-flex flex-shrink-0 gap-2">
             <button class="btn btn-outline-secondary border-outline-variant text-secondary-custom fw-semibold px-4 py-2 rounded-3 hover-bg-surface-container-low transition-all bg-white shadow-sm">
-                <span class="material-symbols-outlined fs-5 me-2 align-middle">edit</span> Editar Perfil
+                <span class="material-symbols-outlined fs-6 me-2 align-middle">edit</span> Editar Perfil
             </button>
         </div>
     </div>
@@ -69,88 +69,99 @@
 <div class="tab-content" id="profileTabsContent">
     <!-- Tab 1: Información Básica -->
     <div class="tab-pane fade show active" id="basic-info" role="tabpanel" tabindex="0">
-        <div class="bg-surface-container-lowest rounded-4 p-4 p-lg-5 shadow-sm ring-1 mb-5">
+        <div class="bg-surface-container-lowest rounded-4 p-4 shadow-sm ring-1 mb-4">
             
-            <div class="row g-4 mb-5">
+            <div class="row g-3 mb-4">
                 <div class="col-12 col-md-4">
-                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Nombres <span class="text-black-50 fw-normal">(Opcional)</span></label>
-                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-3 rounded-3 border border-outline-variant">@Model.Nombres</div>
+                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Nombres</label>
+                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-2 px-3 rounded-3 border border-outline-variant">@Model.Nombres</div>
                 </div>
                 <div class="col-12 col-md-4">
-                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Primer Apellido <span class="text-black-50 fw-normal">(Opcional)</span></label>
-                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-3 rounded-3 border border-outline-variant">@Model.PrimerApellido</div>
+                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Primer Apellido</label>
+                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-2 px-3 rounded-3 border border-outline-variant">@Model.PrimerApellido</div>
                 </div>
                 <div class="col-12 col-md-4">
-                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Segundo Apellido <span class="text-black-50 fw-normal">(Opcional)</span></label>
-                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-3 rounded-3 border border-outline-variant">@Model.SegundoApellido</div>
-                </div>
-            </div>
-
-            <div class="row g-4 mb-5">
-                <div class="col-12 col-md-4">
-                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Tipo de Documento de Identidad <span class="text-black-50 fw-normal">(Opcional)</span></label>
-                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-3 rounded-3 border border-outline-variant">@Model.TipoDocumento</div>
-                </div>
-                <div class="col-12 col-md-4">
-                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">N° de Documento de Identidad <span class="text-black-50 fw-normal">(Opcional)</span></label>
-                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-3 rounded-3 border border-outline-variant">@Model.NumeroDocumento</div>
-                </div>
-                <div class="col-12 col-md-4">
-                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Fecha de nacimiento <span class="text-black-50 fw-normal">(Opcional)</span></label>
-                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-3 rounded-3 border border-outline-variant">@Model.FechaNacimiento</div>
+                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Segundo Apellido</label>
+                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-2 px-3 rounded-3 border border-outline-variant">@Model.SegundoApellido</div>
                 </div>
             </div>
 
-            <div class="row g-4 mb-5">
+            <div class="row g-3 mb-4">
+                <div class="col-12 col-md-4">
+                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Tipo de Documento de Identidad</label>
+                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-2 px-3 rounded-3 border border-outline-variant">@Model.TipoDocumento</div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">N° de Documento de Identidad</label>
+                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-2 px-3 rounded-3 border border-outline-variant">@Model.NumeroDocumento</div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Fecha de nacimiento</label>
+                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-2 px-3 rounded-3 border border-outline-variant">@Model.FechaNacimiento</div>
+                </div>
+            </div>
+
+            <div class="row g-3 mb-4">
                 <div class="col-12 col-md-6">
-                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Nacionalidad <span class="text-black-50 fw-normal">(Opcional)</span></label>
-                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-3 rounded-3 border border-outline-variant">@Model.Nacionalidad</div>
+                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Nacionalidad</label>
+                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-2 px-3 rounded-3 border border-outline-variant">@Model.Nacionalidad</div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Sexo <span class="text-black-50 fw-normal">(Opcional)</span></label>
-                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-3 rounded-3 border border-outline-variant">@Model.Sexo</div>
+                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Sexo</label>
+                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-2 px-3 rounded-3 border border-outline-variant">@Model.Sexo</div>
                 </div>
             </div>
 
-            <hr class="border-outline-variant my-5 opacity-50" />
+            <hr class="border-outline-variant my-4 opacity-50" />
 
-            <div class="row g-4 mb-5">
+            <div class="row g-3 mb-4">
                 <div class="col-12 col-lg-6">
-                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Correo electrónico principal <span class="text-black-50 fw-normal">(Opcional)</span></label>
-                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-3 rounded-3 border border-outline-variant text-truncate">@Model.Email</div>
+                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Correo electrónico principal</label>
+                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-2 px-3 rounded-3 border border-outline-variant text-truncate">@Model.Email</div>
                 </div>
                 <div class="col-12 col-lg-6">
-                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Correo electrónico secundario <span class="text-black-50 fw-normal">(Opcional)</span></label>
-                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-3 rounded-3 border border-outline-variant text-truncate">@(string.IsNullOrEmpty(Model.EmailSecundario) ? "-" : Model.EmailSecundario)</div>
+                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Correo electrónico secundario</label>
+                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-2 px-3 rounded-3 border border-outline-variant text-truncate">@(string.IsNullOrEmpty(Model.EmailSecundario) ? "-" : Model.EmailSecundario)</div>
                 </div>
             </div>
 
-            <div class="row g-4 mb-5">
-                <div class="col-12 col-md-4">
-                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Teléfono Móvil <span class="text-black-50 fw-normal">(Opcional)</span></label>
-                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-3 rounded-3 border border-outline-variant">@Model.TelefonoMovil</div>
+            <div class="row g-3 mb-4">
+                <div class="col-12 col-md-6">
+                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Teléfono Móvil</label>
+                    <div class="d-flex justify-content-between align-items-center fw-medium text-slate-900 fs-6 bg-surface-container-low py-2 px-3 rounded-3 border border-outline-variant">
+                        <span>@(!string.IsNullOrEmpty(Model.TelefonoMovil) ? Model.TelefonoMovil : "+51 999 999 999")</span>
+                        <a href="#" class="text-primary-custom text-decoration-none d-flex align-items-center hover-scale-101 transition-all" title="Editar teléfono móvil">
+                            <span class="material-symbols-outlined fs-5">edit</span>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-12 col-md-4">
-                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Teléfono secundario <span class="text-black-50 fw-normal">(Opcional)</span></label>
-                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-3 rounded-3 border border-outline-variant">@(string.IsNullOrEmpty(Model.TelefonoSecundario) ? "-" : Model.TelefonoSecundario)</div>
-                </div>
-                <div class="col-12 col-md-4">
-                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Teléfono principal <span class="text-black-50 fw-normal">(Opcional)</span></label>
-                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-3 rounded-3 border border-outline-variant">-</div>
+                <div class="col-12 col-md-6">
+                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Teléfono secundario</label>
+                    <div class="d-flex gap-2">
+                        <!-- Select 'Tipo' block -->
+                        <div class="d-flex justify-content-between align-items-center bg-white py-2 px-3 rounded-3 border border-outline-variant text-slate-500 hover-bg-surface-container-lowest transition-colors" style="min-width: 100px; cursor: pointer;">
+                            <span class="fs-6 fw-medium me-1">Tipo</span>
+                            <span class="material-symbols-outlined fs-5">expand_more</span>
+                        </div>
+                        <!-- Empty value block -->
+                        <div class="d-flex flex-grow-1 align-items-center bg-surface-container-low py-2 px-3 rounded-3 border border-outline-variant">
+                            <span class="text-slate-900 fw-medium">@(string.IsNullOrEmpty(Model.TelefonoSecundario) ? "" : Model.TelefonoSecundario)</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <hr class="border-outline-variant my-5 opacity-50" />
+            <hr class="border-outline-variant my-4 opacity-50" />
             
-            <h3 class="font-headline fw-bold text-primary-custom fs-5 mb-4">Tipo</h3>
-            <div class="row g-4">
+            <h3 class="font-headline fw-bold text-primary-custom fs-5 mb-3">Tipo</h3>
+            <div class="row g-3">
                 <div class="col-12 col-md-6">
-                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Tipo de Contratación <span class="text-black-50 fw-normal">(Opcional)</span></label>
-                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-3 rounded-3 border border-outline-variant">@Model.TipoContratacion</div>
+                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Tipo de Contratación</label>
+                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-2 px-3 rounded-3 border border-outline-variant">@Model.TipoContratacion</div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Fecha de contratación <span class="text-black-50 fw-normal">(Opcional)</span></label>
-                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-3 rounded-3 border border-outline-variant">@Model.FechaContratacion</div>
+                    <label class="font-label fw-bold text-slate-500 small d-block mb-1">Fecha de contratación</label>
+                    <div class="fw-medium text-slate-900 fs-6 bg-surface-container-low p-2 px-3 rounded-3 border border-outline-variant">@Model.FechaContratacion</div>
                 </div>
             </div>
 
@@ -159,19 +170,19 @@
     
     <!-- Tab 2: Responsabilidades -->
     <div class="tab-pane fade" id="responsibilities" role="tabpanel" tabindex="0">
-        <div class="bg-surface-container-lowest rounded-4 p-5 shadow-sm ring-1 mb-5 text-center">
-            <span class="material-symbols-outlined text-slate-300 mb-3" style="font-size: 3rem;">assignment</span>
-            <h4 class="font-headline fw-bold text-slate-700 fs-5 mb-2">No hay responsabilidades activas</h4>
-            <p class="text-slate-500 m-0">El usuario actualmente no tiene responsabilidades asignadas en el módulo PEI.</p>
+        <div class="bg-surface-container-lowest rounded-4 p-4 shadow-sm ring-1 mb-4 text-center">
+            <span class="material-symbols-outlined text-slate-300 mb-2" style="font-size: 2.5rem;">assignment</span>
+            <h4 class="font-headline fw-bold text-slate-700 fs-6 mb-1">No hay responsabilidades activas</h4>
+            <p class="text-slate-500 m-0 small">El usuario actualmente no tiene responsabilidades asignadas en el módulo PEI.</p>
         </div>
     </div>
     
     <!-- Tab 3: Historial -->
     <div class="tab-pane fade" id="history" role="tabpanel" tabindex="0">
-        <div class="bg-surface-container-lowest rounded-4 p-5 shadow-sm ring-1 mb-5 text-center">
-            <span class="material-symbols-outlined text-slate-300 mb-3" style="font-size: 3rem;">history</span>
-            <h4 class="font-headline fw-bold text-slate-700 fs-5 mb-2">Historial vacío</h4>
-            <p class="text-slate-500 m-0">No se encontraron registros de responsabilidades pasadas para este usuario.</p>
+        <div class="bg-surface-container-lowest rounded-4 p-4 shadow-sm ring-1 mb-4 text-center">
+            <span class="material-symbols-outlined text-slate-300 mb-2" style="font-size: 2.5rem;">history</span>
+            <h4 class="font-headline fw-bold text-slate-700 fs-6 mb-1">Historial vacío</h4>
+            <p class="text-slate-500 m-0 small">No se encontraron registros de responsabilidades pasadas para este usuario.</p>
         </div>
     </div>
 </div>

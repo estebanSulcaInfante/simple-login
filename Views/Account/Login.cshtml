@@ -7,25 +7,25 @@
 
 <div class="w-100" style="max-width: 28rem;">
     <!-- Institutional Badge / Logo -->
-    <div class="d-flex justify-content-center mb-5">
-        <div class="rounded-3 premium-gradient d-flex align-items-center justify-content-center shadow-lg" style="width: 4rem; height: 4rem;">
-            <span class="material-symbols-outlined text-white fs-1" data-icon="account_balance">account_balance</span>
+    <div class="d-flex justify-content-center mb-3">
+        <div class="rounded-3 premium-gradient d-flex align-items-center justify-content-center shadow-lg" style="width: 3rem; height: 3rem;">
+            <span class="material-symbols-outlined text-white fs-3" data-icon="account_balance">account_balance</span>
         </div>
     </div>
 
     <!-- Header Text -->
-    <div class="text-center mb-5">
-        <h1 class="font-headline fw-bolder fs-3 text-primary-custom tracking-tight mb-2">Consola de Gestión</h1>
-        <p class="text-on-surface-variant fw-medium m-0">Acceda a su portal de identidad institucional</p>
+    <div class="text-center mb-3">
+        <h1 class="font-headline fw-bolder fs-5 text-primary-custom tracking-tight mb-1">Consola de Gestión</h1>
+        <p class="text-on-surface-variant fw-medium m-0 small">Acceda a su portal de identidad institucional</p>
     </div>
 
     <!-- Login Container -->
-    <div class="bg-surface-container-lowest rounded-4 p-4 p-sm-5 shadow ring-1">
+    <div class="bg-surface-container-lowest rounded-4 p-4 shadow ring-1">
         
         <!-- Tab Switcher (Simulated) -->
-        <div class="d-flex bg-surface-container-low p-1 rounded-3 mb-5">
-            <button type="button" class="btn border-0 flex-grow-1 py-2 fw-semibold rounded-2 bg-white text-primary-custom shadow-sm" onclick="setDocumentType('DNI', this)" id="btnDNI">DNI</button>
-            <button type="button" class="btn border-0 flex-grow-1 py-2 fw-medium text-on-surface-variant hover-text-primary-custom transition-colors" onclick="setDocumentType('CE', this)" id="btnCE">CE</button>
+        <div class="d-flex bg-surface-container-low p-1 rounded-3 mb-3">
+            <button type="button" class="btn border-0 flex-grow-1 py-1 fw-semibold rounded-2 bg-white text-primary-custom shadow-sm small" onclick="setDocumentType('DNI', this)" id="btnDNI">DNI</button>
+            <button type="button" class="btn border-0 flex-grow-1 py-1 fw-medium text-on-surface-variant hover-text-primary-custom transition-colors small" onclick="setDocumentType('CE', this)" id="btnCE">CE</button>
         </div>
 
         <!-- Alerts -->
@@ -48,59 +48,73 @@
             </div>
         }
 
-        @if (ViewBag.SessionExpired == true)
-        {
-            <div class="mb-4 bg-secondary-container opacity-75 border-start border-4 border-secondary p-3 rounded-end-3">
-                <div class="d-flex align-items-center gap-2">
-                    <span class="material-symbols-outlined text-secondary-custom fs-5">info</span>
-                    <p class="small text-on-secondary-container fw-medium m-0">Su sesión ha expirado por inactividad. Por favor, vuelva a ingresar.</p>
-                </div>
-            </div>
-        }
+
 
         <!-- Form -->
         <form asp-action="Login" method="post" class="d-flex flex-column gap-4">
             <input type="hidden" id="TipoDocumento" name="TipoDocumento" value="@(ViewBag.LastTipoDocumento ?? "DNI")" />
 
-            <div>
-                <label for="numeroDocumento" class="form-label small fw-semibold text-on-surface-variant mb-2">Número de Documento</label>
-                <input type="text" class="form-control bg-surface-container-highest border-0 py-3 px-3 text-on-surface shadow-none" 
+            <div class="mb-2">
+                <label for="numeroDocumento" class="form-label small fw-semibold text-on-surface-variant mb-1">Número de Documento</label>
+                <input type="text" class="form-control bg-surface-container-highest border-0 py-2 px-3 text-on-surface shadow-none" 
                        id="numeroDocumento" name="numeroDocumento" placeholder="00000000" 
                        value="@ViewBag.LastDataUser" required autocomplete="off" />
             </div>
 
             <div>
-                <div class="d-flex justify-content-between align-items-center mb-2">
+                <div class="d-flex justify-content-between align-items-center mb-1">
                     <label for="password" class="form-label small fw-semibold text-on-surface-variant m-0">Contraseña</label>
-                    <a href="#" class="small fw-semibold text-secondary-custom text-decoration-none hover-underline transition-all" style="font-size: 0.75rem;">¿Olvidó su contraseña?</a>
+                    <a href="#" class="small fw-semibold text-secondary-custom text-decoration-none hover-underline transition-all" style="font-size: 0.70rem;">¿Olvidó su contraseña?</a>
                 </div>
                 <div class="position-relative">
-                    <input type="password" class="form-control bg-surface-container-highest border-0 py-3 px-3 pe-5 text-on-surface shadow-none" 
+                    <input type="password" class="form-control bg-surface-container-highest border-0 py-2 px-3 pe-5 text-on-surface shadow-none" 
                            id="password" name="password" placeholder="••••••••" required autocomplete="current-password" />
-                    <button type="button" class="btn position-absolute end-0 top-50 translate-middle-y border-0 text-on-surface-variant hover-text-primary-custom" onclick="togglePasswordVisibility()">
+                    <button type="button" class="btn position-absolute end-0 top-50 translate-middle-y border-0 text-on-surface-variant hover-text-primary-custom px-3 py-0" onclick="togglePasswordVisibility()">
                         <span class="material-symbols-outlined fs-5" id="toggleIcon">visibility</span>
                     </button>
                 </div>
             </div>
 
-            <button type="submit" class="btn premium-gradient text-white font-headline fw-bold py-3 mt-3 shadow hover-scale-101 active-scale-95 transition-all w-100 rounded-3">
+            <button type="submit" class="btn premium-gradient text-white font-headline fw-bold py-2 mt-2 shadow hover-scale-101 active-scale-95 transition-all w-100 rounded-3">
                 Ingresar
             </button>
         </form>
 
         <!-- Support Footer in Card -->
-        <div class="mt-5 pt-4 border-top border-outline-variant text-center">
-            <p class="small text-on-surface-variant m-0" style="font-size: 0.75rem;">¿Necesita ayuda? <a href="#" class="text-secondary-custom fw-bold text-decoration-none hover-underline">Contacte al Soporte Institucional</a></p>
+        <div class="mt-3 pt-3 border-top border-outline-variant text-center">
+            <p class="small text-on-surface-variant m-0" style="font-size: 0.70rem;">¿Necesita ayuda? <a href="#" class="text-secondary-custom fw-bold text-decoration-none hover-underline">Contacte al Soporte Institucional</a></p>
         </div>
     </div>
 
     <!-- Bottom Illustration -->
-    <div class="mt-5 pt-3 d-flex align-items-center opacity-40">
+    <div class="mt-3 pt-2 d-flex align-items-center opacity-40">
         <div class="flex-grow-1 border-top border-2 border-outline-variant"></div>
-        <div class="px-3" style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 900; color: #0e1c2b;">Capa de Seguridad 4.0</div>
+        <div class="px-3" style="font-size: 9px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 900; color: #0e1c2b;">Capa de Seguridad 4.0</div>
         <div class="flex-grow-1 border-top border-2 border-outline-variant"></div>
     </div>
 </div>
+
+@if (ViewBag.SessionExpired == true)
+{
+    <!-- Floating Toast for Expired Session -->
+    <div id="expiredToast" class="position-fixed bottom-0 end-0 z-100 p-4" style="max-width: 25rem;">
+        <div class="bg-primary-container rounded-2 shadow-lg border-start border-4 border-primary-custom p-3 position-relative overflow-hidden animate-slide-up pb-3">
+            <!-- Progress bar overlay on the bottom -->
+            <div id="expiredProgressBar" class="position-absolute bottom-0 start-0 bg-primary-custom w-100" style="height: 0.2rem; transition: width linear 0.1s;"></div>
+            
+            <div class="d-flex align-items-center gap-3 mb-1">
+                <div class="rounded-circle bg-primary-custom text-white d-flex align-items-center justify-content-center flex-shrink-0" style="width: 2rem; height: 2rem;">
+                    <span class="material-symbols-outlined fs-5" style="font-weight: 700;">info_i</span>
+                </div>
+                <div>
+                    <p class="text-on-primary-container m-0 font-body" style="font-size: 0.90rem; line-height: 1.4;">
+                        Su sesión ha expirado debido a inactividad. Por favor, inicie sesión nuevamente.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
 @section Scripts {
     <script>
@@ -132,6 +146,29 @@
             const currentDocType = document.getElementById('TipoDocumento').value;
             if (currentDocType === 'CE') {
                 setDocumentType('CE', document.getElementById('btnCE'));
+            }
+
+            // Toast Animation Logic
+            const toast = document.getElementById("expiredToast");
+            const progress = document.getElementById("expiredProgressBar");
+            
+            if (toast && progress) {
+                let width = 100;
+                // Animate progress bar down to 0% over 5 seconds (50 updates of 100ms)
+                const interval = setInterval(() => {
+                    width -= 2; // 2% per 100ms = 100% in 5000ms
+                    progress.style.width = width + '%';
+                    
+                    if (width <= 0) {
+                        clearInterval(interval);
+                        // Fade out the toast
+                        toast.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+                        toast.style.opacity = '0';
+                        toast.style.transform = 'translateY(1rem)';
+                        
+                        setTimeout(() => toast.remove(), 500);
+                    }
+                }, 100);
             }
         });
 
