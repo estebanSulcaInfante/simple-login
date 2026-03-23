@@ -20,8 +20,8 @@ namespace LoginFrontend.Services
             // Intentaremos usar tu correo de Gmail
             // Si el correo que usaste para generar la clave fue otro, 
             // simplemente cámbialo aquí.
-            var senderEmail = _configuration["Smtp:Email"] ?? "esteban.sulca.infante@gmail.com"; 
-            var senderPassword = _configuration["Smtp:Password"] ?? "owld cxqm efqr iptn"; 
+            var senderEmail = _configuration["Smtp:Email"] ?? throw new InvalidOperationException("Falta configurar SMTP:Email en appsettings o User Secrets."); 
+            var senderPassword = _configuration["Smtp:Password"] ?? throw new InvalidOperationException("Falta configurar SMTP:Password en appsettings o User Secrets."); 
             
             var incidentTime = DateTime.UtcNow.ToString("dd/MM/yyyy | HH:mm UTC");
 

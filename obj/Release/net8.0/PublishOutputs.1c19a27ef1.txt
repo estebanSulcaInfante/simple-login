@@ -1,6 +1,11 @@
 D:\Users\esteb\login-frontend\bin\Release\net8.0\publish\LoginFrontend.exe
+D:\Users\esteb\login-frontend\bin\Release\net8.0\publish\release_build\web.config
 D:\Users\esteb\login-frontend\bin\Release\net8.0\publish\appsettings.Development.json
 D:\Users\esteb\login-frontend\bin\Release\net8.0\publish\appsettings.json
+D:\Users\esteb\login-frontend\bin\Release\net8.0\publish\release_build\appsettings.Development.json
+D:\Users\esteb\login-frontend\bin\Release\net8.0\publish\release_build\appsettings.json
+D:\Users\esteb\login-frontend\bin\Release\net8.0\publish\release_build\LoginFrontend.deps.json
+D:\Users\esteb\login-frontend\bin\Release\net8.0\publish\release_build\LoginFrontend.runtimeconfig.json
 D:\Users\esteb\login-frontend\bin\Release\net8.0\publish\LoginFrontend.dll
 D:\Users\esteb\login-frontend\bin\Release\net8.0\publish\LoginFrontend.runtimeconfig.json
 D:\Users\esteb\login-frontend\bin\Release\net8.0\publish\LoginFrontend.pdb

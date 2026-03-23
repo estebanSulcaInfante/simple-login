@@ -27,11 +27,20 @@ builder.Services.AddSession(options =>
 
 var app = builder.Build();
 
-// Initialize database
+// Initialize database (Try-Catch safe for production)
 using (var scope = app.Services.CreateScope())
 {
-    var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    DbInitializer.Initialize(context);
+    var services = scope.ServiceProvider;
+    try
+    {
+        var context = services.GetRequiredService<AppDbContext>();
+        DbInitializer.Initialize(context);
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "Ocurrió un error al intentar migrar/inicializar la Base de Datos Remota. Verifica la cadena de conexión SQL.");
+    }
 }
 
 if (!app.Environment.IsDevelopment())

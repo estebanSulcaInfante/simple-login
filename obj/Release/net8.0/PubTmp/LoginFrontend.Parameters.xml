@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
-  <parameter name="IIS Web Application Name" description="" value="site60084" tags="IisApp">
+  <parameter name="IIS Web Application Name" description="" value="site60085" tags="IisApp">
     <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\Users\\esteb\\login-frontend\\bin\\Release\\net8\.0\\publish\\$" />
   </parameter>
 </parameters>

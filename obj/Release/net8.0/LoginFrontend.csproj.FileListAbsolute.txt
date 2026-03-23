@@ -170,3 +170,8 @@ D:\Users\esteb\login-frontend\obj\Release\net8.0\refint\LoginFrontend.dll
 D:\Users\esteb\login-frontend\obj\Release\net8.0\LoginFrontend.pdb
 D:\Users\esteb\login-frontend\obj\Release\net8.0\LoginFrontend.genruntimeconfig.cache
 D:\Users\esteb\login-frontend\obj\Release\net8.0\ref\LoginFrontend.dll
+D:\Users\esteb\login-frontend\bin\Release\net8.0\release_build\web.config
+D:\Users\esteb\login-frontend\bin\Release\net8.0\release_build\appsettings.Development.json
+D:\Users\esteb\login-frontend\bin\Release\net8.0\release_build\appsettings.json
+D:\Users\esteb\login-frontend\bin\Release\net8.0\release_build\LoginFrontend.deps.json
+D:\Users\esteb\login-frontend\bin\Release\net8.0\release_build\LoginFrontend.runtimeconfig.json

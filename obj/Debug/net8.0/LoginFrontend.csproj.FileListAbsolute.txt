@@ -170,3 +170,8 @@ D:\Users\esteb\login-frontend\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Wi
 D:\Users\esteb\login-frontend\bin\Debug\net8.0\Microsoft.AspNetCore.WebUtilities.dll
 D:\Users\esteb\login-frontend\bin\Debug\net8.0\Microsoft.Net.Http.Headers.dll
 D:\Users\esteb\login-frontend\bin\Debug\net8.0\Resend.dll
+D:\Users\esteb\login-frontend\bin\Debug\net8.0\release_build\web.config
+D:\Users\esteb\login-frontend\bin\Debug\net8.0\release_build\appsettings.Development.json
+D:\Users\esteb\login-frontend\bin\Debug\net8.0\release_build\appsettings.json
+D:\Users\esteb\login-frontend\bin\Debug\net8.0\release_build\LoginFrontend.deps.json
+D:\Users\esteb\login-frontend\bin\Debug\net8.0\release_build\LoginFrontend.runtimeconfig.json
